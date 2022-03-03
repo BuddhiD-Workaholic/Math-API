@@ -30,15 +30,10 @@ app.get("/getmath", async (req, res) => {
     try {
         //Rmin, Rmax, Amin, Amax, OperationArr, nagativeObj, exponentObj
         const { Rminmax } = req.body;
-        console.log(Rminmax);
         const { Aminmax } = req.body;
-        console.log(Aminmax)
         const { OperationArr } = req.body;
-        console.log(OperationArr)
         const { nagativeObj } = req.body;
-        console.log(nagativeObj)
         const { exponentObj } = req.body;
-        console.log(exponentObj)
 
         let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
         console.log(respon.question)
