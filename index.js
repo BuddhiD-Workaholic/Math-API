@@ -7,11 +7,12 @@ const randomMathQuestion = require('random-math-question');
 function RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj) {
     var mathQuestion = randomMathQuestion.get(randomMathQuestion.get({
         numberRange: Rminmax,
-        amountOfNumber: Aminmax,
+        amountOfNumber: '8-10',
         operations: OperationArr,
         nagative: nagativeObj,
         exponent: exponentObj,
     }));
+    console.log(mathQuestion);
     return mathQuestion;
 }
 
