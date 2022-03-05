@@ -12,7 +12,6 @@ function RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponent
         nagative: nagativeObj,
         exponent: exponentObj,
     }));
-    console.log(mathQuestion);
     return mathQuestion;
 }
 
@@ -36,9 +35,8 @@ app.get("/getmath", async (req, res) => {
         const { exponentObj } = req.body;
 
         let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
-        console.log(respon.question)
-        console.log(Math.round(respon.answer))
-        res.json(respon);
+		const respoReturn = { MathAPI: respon, Creator: 'Buddhi Dhananjaya', Link:'https://github.com/BuddhiD-Workaholic'};
+        res.json(respoReturn);
 
     } catch (err) {
         res.json(err.message);
