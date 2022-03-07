@@ -1,6 +1,7 @@
 const PORT = process.env.PORT || 5244
 const express = require('express')
 const app = express();
+const CryptoJS = require('crypto-js')
 const cors = require("cors");
 const randomMathQuestion = require('random-math-question');
 
@@ -25,23 +26,49 @@ app.get('/', (req, res) => {
 
 
 //get all todos - GET
-app.get("/getmath", async (req, res) => {
+app.get("/getmath/:cookie", async (req, res) => {
     try {
-        //Rmin, Rmax, Amin, Amax, OperationArr, nagativeObj, exponentObj
-        const { Rminmax } = req.body;
-        const { Aminmax } = req.body;
-        const { OperationArr } = req.body;
-        const { nagativeObj } = req.body;
-        const { exponentObj } = req.body;
 
-        let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
-		const respoReturn = { MathAPI: respon, Creator: 'Buddhi Dhananjaya', Link:'https://github.com/BuddhiD-Workaholic'};
-        res.json(respoReturn);
+        const cookie = req.params.cookie;
+        if (cookie != 'null') {
+
+            var decryptedBytes = CryptoJS.AES.decrypt(cookie, "27b509240c6979d2a69181340d83a18c1cf98d10972694159d24f2c5b46eec04");
+            var plaintext = decodeURIComponent(decryptedBytes.toString(CryptoJS.enc.Utf8));
+            var arayA = plaintext.split("-");
+            if ((arayA.length = 4) && (arayA[0] == "XYZ") && (arayA[2] == "ABC") && (isNaN(arayA[1]) == false)) {
+                if (arayA[3] >= new Date().getTime()) {
+                    const { Rminmax } = req.body;
+                    console.log(Rminmax);
+                    const { Aminmax } = req.body;
+                    console.log(Aminmax)
+                    const { OperationArr } = req.body;
+                    console.log(OperationArr)
+                    const { nagativeObj } = req.body;
+                    console.log(nagativeObj)
+                    const { exponentObj } = req.body;
+                    console.log(exponentObj)
+
+                    let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
+                    const respoReturn = { MathAPI: respon, Creator: 'Buddhi Dhananjaya', Link: 'https://github.com/BuddhiD-Workaholic' };
+                    res.json(respoReturn);
+                } else {
+                    let respon = "The session is expirerd!"
+                    res.json(respon);
+                }
+            } else {
+                let respon = "You need to be authnticated to use this! Please login!"
+                res.json(respon);
+            }
+        } else {
+            let respon = "Please login to use this service!"
+            res.json(respon);
+        }
 
     } catch (err) {
         res.json(err.message);
     }
 });
+
 
 //Port Initialization
 app.listen(PORT, () => {
