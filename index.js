@@ -10,7 +10,7 @@ const randomMathQuestion = require('random-math-question');
 function RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj) {
     var mathQuestion = randomMathQuestion.get(randomMathQuestion.get({
         numberRange: Rminmax,
-        amountOfNumber: '8-10',
+        amountOfNumber: Aminmax,
         operations: OperationArr,
         nagative: nagativeObj,
         exponent: exponentObj,
@@ -58,7 +58,7 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
                     console.log(exponentObj)
 
                     let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
-                    const respoReturn = { MathAPI: respon, Creator: 'Buddhi Dhananjaya', Link: 'https://github.com/BuddhiD-Workaholic' };
+                    const respoReturn = { "MathAPI": respon, "Creator": 'Buddhi Dhananjaya', "Link": 'https://github.com/BuddhiD-Workaholic' };
                     res.json(respoReturn);
                 } else {
                     let respon = "The session is expirerd!"
