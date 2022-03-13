@@ -58,7 +58,7 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
                     console.log(exponentObj)
 
                     let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
-                    const respoReturn = { "MathAPI": respon, "Creator": 'Buddhi Dhananjaya', "Link": 'https://github.com/BuddhiD-Workaholic' };
+                    const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
                     res.json(respoReturn);
                 } else {
                     let respon = "The session is expirerd!"
@@ -89,7 +89,7 @@ app.get("/getmathImg/:cookie", async (req, res) => {
             if ((arayA.length = 4) && (arayA[0] == "XYZ") && (arayA[2] == "ABC") && (isNaN(arayA[1]) == false)) {
                 if (arayA[3] >= new Date().getTime()) {
                     let respon = getRandomGame();
-                    const respoReturn = { MathAPI: respon, Creator: 'Buddhi Dhananjaya', Link: 'https://github.com/BuddhiD-Workaholic' };
+                    const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
                     res.json(respoReturn);
                 } else {
                     let respon = "The session is expirerd!"
