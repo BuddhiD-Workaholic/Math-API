@@ -90,8 +90,10 @@ app.get("/getmathImg/:cookie", async (req, res) => {
                 if (arayA[3] >= new Date().getTime()) {
                     let respon = getRandomGame();
                     const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
-                    var encryptedAES = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext);
-                    res.json(encodeURIComponent(encryptedAES.toString()));
+                    // var encryptedAES = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext);
+                    let encJson = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext).toString()
+                    let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson))
+                    res.json(encodeURIComponent(encData));
                 } else {
                     let respon = "The session is expirerd!"
                     res.json(respon);
