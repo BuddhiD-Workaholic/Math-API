@@ -58,6 +58,7 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
                     console.log(exponentObj)
 
                     let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
+                    const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
                     let encJson = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext).toString()
                     let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson))
                     res.json(encodeURIComponent(encData));
