@@ -61,7 +61,7 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
                     const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
                     let encJson = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext).toString()
                     let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson))
-                    res.json(encodeURIComponent(encData));
+                    res.json((encData));
                 } else {
                     let respon = "The session is expirerd!"
                     res.json(respon);
@@ -93,7 +93,7 @@ app.get("/getmathImg/:cookie", async (req, res) => {
                     const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
                     let encJson = CryptoJS.AES.encrypt(JSON.stringify(respoReturn), plaintext).toString()
                     let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson))
-                    res.json(encodeURIComponent(encData));
+                    res.json((encData));
                 } else {
                     let respon = "The session is expirerd!"
                     res.json(respon);
