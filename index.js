@@ -59,7 +59,8 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
 
                     let respon = RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj);
                     const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
-                    res.json(respoReturn);
+                    var encryptedAES = CryptoJS.AES.encrypt(respoReturn, cookie);
+                    res.json(encodeURIComponent(encryptedAES.toString()));
                 } else {
                     let respon = "The session is expirerd!"
                     res.json(respon);
@@ -82,7 +83,6 @@ app.get("/getmathImg/:cookie", async (req, res) => {
 
         const cookie = req.params.cookie;
         if (cookie != 'null') {
-
             var decryptedBytes = CryptoJS.AES.decrypt(cookie, "27b509240c6979d2a69181340d83a18c1cf98d10972694159d24f2c5b46eec04");
             var plaintext = decodeURIComponent(decryptedBytes.toString(CryptoJS.enc.Utf8));
             var arayA = plaintext.split("-");
@@ -90,7 +90,8 @@ app.get("/getmathImg/:cookie", async (req, res) => {
                 if (arayA[3] >= new Date().getTime()) {
                     let respon = getRandomGame();
                     const respoReturn = { MathAPI: respon, Link: 'https://github.com/BuddhiD-Workaholic' };
-                    res.json(respoReturn);
+                    var encryptedAES = CryptoJS.AES.encrypt(respoReturn, cookie);
+                    res.json(encodeURIComponent(encryptedAES.toString()));
                 } else {
                     let respon = "The session is expirerd!"
                     res.json(respon);
