@@ -9,22 +9,6 @@ class Game {
         this.location = location;
         this.solution = solution;
     }
-    /**
-     * The location of the game. 
-     * @return the location of the game.
-     */
-    getLocation() {
-        return location;
-        //return URL String
-    }
-
-    /**
-     * @return The solution of the game.
-     */
-    getSolution() {
-        return solution;
-        //return int
-    }
 
 }
 
