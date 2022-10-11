@@ -5,7 +5,8 @@ const app = express();
 const CryptoJS = require('crypto-js')
 const cors = require("cors");
 const randomMathQuestion = require('random-math-question');
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 function RandomMathQuetion(Rminmax, Aminmax, OperationArr, nagativeObj, exponentObj) {
     var mathQuestion = randomMathQuestion.get(randomMathQuestion.get({
@@ -41,7 +42,7 @@ app.get("/getmathRandom/:cookie", async (req, res) => {
         const cookie = req.params.cookie;
         if (cookie != 'null') {
 
-            var decryptedBytes = CryptoJS.AES.decrypt(cookie, "27b509240c6979d2a69181340d83a18c1cf98d10972694159d24f2c5b46eec04");
+            var decryptedBytes = CryptoJS.AES.decrypt(cookie, process.env.SECRET_KEY);
             var plaintext = decodeURIComponent(decryptedBytes.toString(CryptoJS.enc.Utf8));
             var arayA = plaintext.split("-");
             if ((arayA.length = 4) && (arayA[0] == "XYZ") && (arayA[2] == "ABC") && (isNaN(arayA[1]) == false)) {
@@ -84,7 +85,7 @@ app.get("/getmathImg/:cookie", async (req, res) => {
 
         const cookie = req.params.cookie;
         if (cookie != 'null') {
-            var decryptedBytes = CryptoJS.AES.decrypt(cookie, "27b509240c6979d2a69181340d83a18c1cf98d10972694159d24f2c5b46eec04");
+            var decryptedBytes = CryptoJS.AES.decrypt(cookie, process.env.SECRET_KEY);
             var plaintext = decodeURIComponent(decryptedBytes.toString(CryptoJS.enc.Utf8));
             var arayA = plaintext.split("-");
             if ((arayA.length = 4) && (arayA[0] == "XYZ") && (arayA[2] == "ABC") && (isNaN(arayA[1]) == false)) {
@@ -117,21 +118,3 @@ app.listen(PORT, () => {
 });
 
 
-//JSON Body
-// {
-//     "Rminmax": "'1-5000'",
-//     "Aminmax": "'5-10'",
-//     "OperationArr": [
-//         "/",
-//         "*"
-//     ],
-//     "nagativeObj": {
-//         "containsNagatives": false,
-//         "negativeChance": "10%"
-//     },
-//     "exponentObj": {
-//         "containsExponents": true,
-//         "exponentChance": "10%",
-//         "exponentRange": "1-10"
-//     }
-// }
