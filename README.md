@@ -7,9 +7,13 @@ This repository contains the source code for the Inter galactica game, which can
 [![Temp.png](https://i.postimg.cc/W3RMvzXb/Temp.png)](https://postimg.cc/FfZfb9M2)
 
 ## To run the application, 
+```bash
 Create a enviornmental variable file (.env) and add a variable called: SECRET_KEY
 Then add a random string, make the string randowm as possible and at least 256 chracters are recomended, if you running this system in production make sure to change the key every month. 
-
+```
+```bash
 Then npm run start.
-
+```
+```bash
 The server will start and run on the port 5244. 
+```
